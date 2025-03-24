@@ -1,0 +1,79 @@
+name: tinyllama_1B_cpt
+steps: 10000
+grad_acc_steps: 3
+probe_freq: null
+seed: 777
+
+optim:
+  lr: 5e-5
+  weight_decay: 0.01
+  warmup: 2000
+  lr_min_ratio: 0.000001
+  clip: 1.0
+
+distributed:
+  fsdp_type: full_shard
+  compile: true
+  model_dtype: bf16
+  matmul_allow_tf32: false
+  selective_activation_checkpointing: false
+  tp_size: 1
+
+model:
+  dim: 2048
+  hidden_dim: 5632  # If specified, use exactly this value as the hidden dim for the feedforward layer
+  n_layers: 22
+  head_dim: 64
+  n_heads: 32
+  n_kv_heads: 4
+  ffn_dim_multiplier: null
+  tie_embeddings: false
+  norm_eps: 1e-05
+
+data:
+  root_dir: data/processed
+  sources: {}   # specified in the command line
+  batch_size: 8
+  prefetch_size: 1024
+  seq_len: 2048
+  n_views: 2
+  load_async: true
+  add_bos: true
+  add_eos: true
+  tokenizer:
+    name: hf
+    path: exp_logs/pretrained_hf_ckpts/TinyLlama/TinyLlama_v1.1-embd-resized/tokenizer
+
+profiling:
+  run: false
+  mem_warmup: 0
+  mem_steps: 4
+  profile_warmup: 100
+  profile_steps: 4
+
+checkpoint:
+  init_ckpt_path: exp_logs/pretrained_hf_ckpts/TinyLlama/TinyLlama_v1.1-embd-resized
+  dump:
+    every: 5000
+    keep: 1
+  eval:
+    every: 2500
+    keep: 1
+
+logging:
+  level: INFO
+  freq: 10
+  wandb:
+    project: latent-lingua
+    resume: allow
+
+async_eval_gpus: 1
+eval: ${include:../eval/cpt_eval.yaml}
+slurm:
+  ncpu: 16
+  mem: 64G
+  anaconda: default
+  time: 360  # 6 hours
+
+env:
+  NCCL_DEBUG: WARN

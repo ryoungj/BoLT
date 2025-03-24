@@ -1,0 +1,4 @@
+dataset_name: high_school_physics
+tag: mmlu_cot_synthetic_stem_tasks
+include: _mmlu_cot_synthetic_template.yaml
+task: mmlu_cot_synthetic_high_school_physics

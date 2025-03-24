@@ -1,0 +1,54 @@
+dump_dir: ./exp_logs/train_bootstrap_fixed_data_bootstrap/train_bootstrap_fixed_data_bootstrap_setup=bootstrap_latents_iter=1_mc=4_scratch_trial_0/finetune_gsm8k/0000033060
+model_name_or_path: ./exp_logs/train_bootstrap_fixed_data_bootstrap/train_bootstrap_fixed_data_bootstrap_setup=bootstrap_latents_iter=1_mc=4_scratch_trial_0/checkpoints/0000033060/hf
+save_dir: ${dump_dir}
+tokenizer_name_or_path: ./exp_logs/pretrained_hf_ckpts/TinyLlama/TinyLlama_v1.1-embd-resized/tokenizer
+run_name: finetune_gsm8k
+
+epochs: 5
+gradient_accumulation_steps: 8
+per_device_train_batch_size: 8
+per_device_eval_batch_size: 16
+learning_rate: 1e-4
+max_seq_len: 2048
+num_proc: 8
+logging_steps: 1
+num_eval_samples: -1
+eval_steps: 0.99  # last checkpoint
+fp16: False
+bf16: True
+tf32: True
+seed: 42
+eval_strategy: steps
+save_strategy: "no"
+save_steps: 10000000
+save_total_limit: 1
+weight_decay: 0.0
+warmup_ratio: 0.05
+lr_scheduler_type: cosine
+adam_beta1: 0.9
+adam_beta2: 0.95
+eval_delay: 100
+    
+dataset: gsm8k
+dataset_base_path: ./data/finetune_eval/
+use_validation_set: true
+use_test_set: true
+only_special_token_delimiter: false
+
+# Generation config
+max_length: 2048  # Length of input prompt + max_new_tokens
+max_new_tokens: 1600
+do_sample: true
+top_k: 50
+top_p: 0.9
+temperature: 0.6
+num_samples_per_prompt: 16  # Number of samples to evaluate on per prompt for variance reduction
+
+# VLLM config
+use_vllm: true
+vllm_device: "auto"
+vllm_gpu_memory_utilization: 0.4
+vllm_dtype: "bfloat16"
+vllm_enable_prefix_caching: true
+vllm_max_model_len: 2048
+output_csv_path: ${dump_dir}

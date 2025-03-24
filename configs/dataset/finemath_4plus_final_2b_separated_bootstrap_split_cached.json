@@ -1,0 +1,18 @@
+{
+    "uuid": "3842aa15-dba2-4a4e-98c2-355c601e117e",
+    "name": "finemath_4plus_final_2b_separated_bootstrap_split",
+    "path": "./data/processed/finemath_4plus_final_2b_separated_bootstrap_split",
+    "sources": [
+        "finemath_4plus_final_fixed_train_split"
+    ],
+    "format": "final",
+    "stats": {
+        "num_samples": 1338556,
+        "content_word_length": 0,
+        "src_num_samples": 6692793,
+        "src_content_word_length": 0
+    },
+    "process_kwargs": {
+        "split_slice": "13:17:20"
+    }
+}

@@ -1,0 +1,15 @@
+group: hendrycks_math_cot_synthetic
+task:
+  - hendrycks_math_cot_synthetic_algebra
+  - hendrycks_math_cot_synthetic_counting_and_prob
+  - hendrycks_math_cot_synthetic_geometry
+  - hendrycks_math_cot_synthetic_intermediate_algebra
+  - hendrycks_math_cot_synthetic_num_theory
+  - hendrycks_math_cot_synthetic_prealgebra
+  - hendrycks_math_cot_synthetic_precalc
+aggregate_metric_list:
+  - metric: exact_match
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

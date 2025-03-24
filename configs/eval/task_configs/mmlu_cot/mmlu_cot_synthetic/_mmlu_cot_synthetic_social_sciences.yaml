@@ -1,0 +1,10 @@
+group: mmlu_cot_synthetic_social_sciences
+task:
+  - mmlu_cot_synthetic_social_sciences_tasks
+aggregate_metric_list:
+  - metric: exact_match
+    aggregation: mean
+    weight_by_size: true
+    filter_list: 
+    - strict-match
+    - flexible-extract

@@ -1,0 +1,4 @@
+dataset_name: professional_medicine
+tag: latent_mmlu_cot_synthetic_other_tasks
+include: _latent_mmlu_cot_synthetic_template.yaml
+task: latent_mmlu_cot_synthetic_professional_medicine

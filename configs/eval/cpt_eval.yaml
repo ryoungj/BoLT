@@ -1,0 +1,35 @@
+use_vllm: true
+generator:
+  gpu_memory_utilization: 0.85   # 0.8 will OOM on a 48GB GPU
+  max_num_seqs: 200  # for avoiding preemption issue on a 48GB GPU, max is 580 for llama3, but too large would make the progress discontinuous
+  max_pack_tokens: 8192
+  dtype: bf16
+  temperature: 1.0
+  top_p: 1.0  # should not set for now, as in vllm it will afffect the computation of the log likelihood (even in the prompt)
+  show_progress: true
+harness:
+  tasks:
+    - task: gsm8k_cot_synthetic_alt
+      num_fewshot: 8
+    - task: hendrycks_math_cot_synthetic
+      num_fewshot: 4  
+  limit: null
+  include_path: configs/eval/task_configs
+  gen_eval_on_latent_variant: true   # eval on latent variant of generative tasks for latent models
+validation:
+  run_validation: true
+  use_val_from_train_src: false
+  root_dir: data/processed
+  sources:
+    - finemath_4plus_final_fixed_val_split
+  max_num_samples: 1000   # elbo on the whole set is expensive
+  compute_elbo_every_n_steps: 5000
+  elbo_cfg:
+    max_gen_len: 1024
+    units_per_chunk: 8
+    max_num_units_per_chunk: 20
+    min_num_units_per_chunk: 1
+    num_mc_samples:
+    - 1
+    - 2
+    - 4

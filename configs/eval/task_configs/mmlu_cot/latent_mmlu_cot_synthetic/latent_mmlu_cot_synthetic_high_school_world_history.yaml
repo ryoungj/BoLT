@@ -1,0 +1,4 @@
+dataset_name: high_school_world_history
+tag: latent_mmlu_cot_synthetic_humanities_tasks
+include: _latent_mmlu_cot_synthetic_template.yaml
+task: latent_mmlu_cot_synthetic_high_school_world_history

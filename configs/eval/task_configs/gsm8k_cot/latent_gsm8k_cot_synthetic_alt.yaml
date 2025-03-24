@@ -1,0 +1,88 @@
+### Adapted from https://github.com/EleutherAI/lm-evaluation-harness/blob/main/lm_eval/tasks/gsm8k/gsm8k-cot.yaml ###
+
+dataset_name: main
+dataset_path: gsm8k
+doc_to_target: '{{answer.split(''####'')[-1].strip() if answer is defined else target}}'
+doc_to_text: 'Question: {{question}}
+
+Final Answer:<|START_OF_LATENT|><|PRIOR_PREFIX|>'
+fewshot_config:
+  # sampler: first_n
+  sampler: default
+  samples:
+  - question: A deep-sea monster rises from the waters once every hundred years to feast on a ship and sate its hunger. Over three hundred years, it has consumed 847 people. Ships have been built larger over time, so each new ship has twice as many people as the last ship. How many people were on the ship the monster ate in the first hundred years? 
+    target: "To find the number of people on the ship the monster ate in the first hundred years, we need to understand the pattern of ship sizes and the total consumption over three hundred years. \n\nThe monster consumes a ship every hundred years, meaning it consumes a total of three ships over three hundred years. The problem states that ships have been built larger over time, specifically that each new ship has twice as many people as the last ship. \n\nLet's denote the number of people on the ship in the first hundred years as x. According to the problem, the second ship, which the monster eats in the second hundred years, has twice as many people, or 2x. The third ship has twice the number of people as the second ship, or 4x. \n\nNow we can express the total number of people consumed over the three hundred years as:\nx (first ship) + 2x (second ship) + 4x (third ship) = 847 people.\n\nCombining these terms gives us:\nx + 2x + 4x = 7x.\n\nSetting this equal to the total consumption:\n7x = 847.\n\nTo find x, we divide both sides by 7:\nx = 847 / 7 = 121.\n\nThus, the number of people on the ship the monster ate in the first hundred years is 121. Therefore, the answer is 121.<|END_OF_LATENT|> The final answer is 121. I hope it is correct."
+  - question: Nancy is filling an aquarium for her fish. She fills it halfway and goes to answer the door. While she's gone, her cat knocks the aquarium over and spills half the water in it. Then Nancy comes back and triples the amount of water in the aquarium. If the aquarium is 4 feet long, 6 feet wide, and 3 feet high, how many cubic feet of water are in the aquarium? 
+    target: "To find the total volume of water in the aquarium, calculate the aquarium's total volume first. The formula for the volume of a rectangular prism is length multiplied by width multiplied by height. Here, the dimensions are 4 feet long, 6 feet wide, and 3 feet high. \n\nCalculate the total volume:\nVolume = length x width x height\nVolume = 4 feet x 6 feet x 3 feet = 72 cubic feet.\n\nInitially, Nancy fills the aquarium halfway. Therefore, the amount of water after she fills it is:\nHalf of 72 cubic feet = 72 / 2 = 36 cubic feet.\n\nWhile Nancy is away, the cat spills half of this amount:\nAmount spilled = 36 cubic feet / 2 = 18 cubic feet.\nThus, the remaining water in the aquarium after the spill is:\n36 cubic feet - 18 cubic feet = 18 cubic feet.\n\nWhen Nancy returns, she triples the remaining amount of water. Calculate the new amount of water:\nNew amount = 3 x 18 cubic feet = 54 cubic feet.\n\nThe final amount of water in the aquarium in cubic feet is 54. Therefore, the answer is 54.<|END_OF_LATENT|> The final answer is 54. I hope it is correct."
+  - question: Joey wants to buy the latest released pair of designer High Jump basketball sneakers. He plans to mow 3 neighbors’ lawns for $8 a lawn, sell 2 collectible figures to his friends for $9 each, and work an after-school job for 10 hours at $5 per hour. If his earnings just cover the price of the High Jump sneakers, how much do the shoes cost? 
+    target: "To find the total earnings Joey accumulates, we need to calculate each source of income step-by-step. \n\nFirst, calculate the income from mowing lawns. Joey mows 3 lawns at a rate of $8 per lawn. Therefore, the total income from mowing is:\n3 lawns * $8/lawn = $24.\n\nNext, calculate the income from selling collectible figures. Joey sells 2 figures at a price of $9 each. Thus, the total income from selling figures is:\n2 figures * $9/figure = $18.\n\nNow, calculate the income from his after-school job. Joey works for 10 hours at a rate of $5 per hour. Therefore, his income from the job is:\n10 hours * $5/hour = $50.\n\nNow, sum all these earnings to find the total amount Joey has:\n$24 (mowing) + $18 (selling figures) + $50 (job) = $92.\n\nSince Joey's total earnings of $92 exactly cover the price of the High Jump basketball sneakers, it can be concluded that the cost of the sneakers is $92. Therefore, the answer is 92.<|END_OF_LATENT|> The final answer is 92. I hope it is correct."
+  - question: A family has three adults and children, both girls and boys. They went out for a family trip and prepared 3 dozen boiled eggs for the trip. Every adult got 3 eggs, and the boys each received 1 more egg than each girl since the girls had some snacks. How many boys went on the trip if the number of girls was 7 and each girl received an egg? 
+    target: "To determine the number of boys on the trip, we first analyze the information given. We know there are 7 girls. Each girl received 1 egg. Therefore, the total number of eggs given to the girls is:\n\n7 girls * 1 egg/girl = 7 eggs.\n\nNext, we find out how many eggs were allocated to the adults. There are 3 adults, and each received 3 eggs, which results in:\n\n3 adults * 3 eggs/adult = 9 eggs.\n\nNow we calculate the total number of eggs distributed so far:\n\n7 eggs (to girls) + 9 eggs (to adults) = 16 eggs.\n\nSince the family prepared 3 dozen boiled eggs, we find the total number of eggs:\n\n3 dozen = 3 * 12 = 36 eggs.\n\nNow we determine how many eggs remain for the boys:\n\n36 total eggs - 16 eggs already distributed = 20 eggs available for the boys.\n\nAccording to the problem, each boy received 1 more egg than each girl, which means each boy received:\n\n1 egg (for the girl) + 1 egg = 2 eggs.\n\nLet B represent the number of boys. The total number of eggs given to the boys can be expressed as:\n\nB boys * 2 eggs/boy = 2B eggs.\n\nSetting the available eggs for the boys equal to the eggs they received, we have:\n\n2B = 20.\n\nTo find B, we solve the equation:\n\nB = 20 / 2 = 10.\n\nThus, the number of boys who went on the trip is 10. Therefore, the answer is 10.<|END_OF_LATENT|> The final answer is 10. I hope it is correct."
+  - question: Before getting to work, Jess has a few errands to run. Jess has to walk 11 blocks to the store and 6 blocks to the gallery, before walking the final 8 blocks to arrive at work. If Jess has already walked 5 blocks, how many more blocks must she walk before arriving at work? 
+    target: "To determine the total distance Jess needs to walk to work, first calculate the total number of blocks from the store and the gallery to work. The distance to the store is 11 blocks, and the distance to the gallery is 6 blocks. Thus, the total distance to work is the sum of these two distances plus the final stretch to work, which is 8 blocks. \n\nTotal distance = 11 blocks (to store) + 6 blocks (to gallery) + 8 blocks (to work) = 25 blocks. \n\nNext, subtract the distance Jess has already walked, which is 5 blocks, from the total distance calculated. \n\nRemaining distance = Total distance - Distance already walked = 25 blocks - 5 blocks = 20 blocks. \n\nThus, Jess must walk 20 more blocks to reach work. Therefore, the answer is 20.<|END_OF_LATENT|> The final answer is 20. I hope it is correct."
+  - question: There are 30 different nuts in a bowl. If 5/6 of the nuts were eaten, how many nuts were left? 
+    target: "To determine how many nuts are left after 5/6 of them are eaten, first, calculate how many nuts were consumed. Start with the total number of nuts, which is 30. To find the number of nuts eaten, multiply 30 by 5/6. \n\n30 * (5/6) = 25 nuts eaten.\n\nNext, subtract the number of nuts eaten from the total number of nuts to find how many are left. \n\n30 - 25 = 5 nuts remaining.\n\nThus, after consuming 5/6 of the nuts, 5 nuts are left in the bowl. Therefore, the answer is 5.<|END_OF_LATENT|> The final answer is 5. I hope it is correct."
+  - question: "Yuan is 7 years older than his brother David and twice his age. How old is David?"
+    target: "Let Y represent Yuan's age and D represent David's age. \n\nFrom the information given, we can establish two equations based on the relationships described. \n\nFirst, the statement \"Yuan is 7 years older than his brother David\" can be mathematically expressed as:\nY = D + 7.\n\nSecond, the statement \"Yuan is twice his age\" translates to:\nY = 2D.\n\nNow, we can set the two equations equal to each other since both represent Yuan's age:\nD + 7 = 2D.\n\nTo isolate D, we need to rearrange the equation:\n7 = 2D - D,\n7 = D.\n\nThus, David's age is determined to be 7 years old. Therefore, the answer is 7.<|END_OF_LATENT|> The final answer is 7. I hope it is correct."
+  - question: "Ben works 8-hour shifts in a furniture shop. It takes him 5 hours to build 1 rocking chair. How many chairs can he build in 10 days?"
+    target: "To find out how many rocking chairs Ben can build in 10 days, first determine the total number of hours he works in that period. Since he works 8-hour shifts, over 10 days, he works a total of 8 hours/day multiplied by 10 days, which equals 80 hours.\n\nNext, calculate how many rocking chairs Ben can build in those 80 hours. Each rocking chair takes him 5 hours to complete. To find the total number of chairs, divide the total hours worked by the time taken to build one chair: 80 hours divided by 5 hours/chair equals 16 chairs.\n\nThus, in 10 days, Ben can build 16 rocking chairs. Therefore, the answer is 16.<|END_OF_LATENT|> The final answer is 16. I hope it is correct."
+target_delimiter: ""
+fewshot_delimiter: "\n\n\n\n##Problem\n"
+filter_list:
+- filter:
+  - function: regex
+    regex_pattern: answer is (\-?[0-9\.\,]+).
+  - function: take_first
+  name: strict-match
+- filter:
+  - function: regex
+    group_select: -1
+    regex_pattern: (-?[$0-9.,]{2,})|(-?[0-9]+)
+  - function: take_first
+  name: flexible-extract
+- filter:
+  - function: regex
+    group_select: 0
+    regex_pattern: '([\s\S]*?)<\|END_OF_LATENT\|>'
+  - function: regex
+    group_select: -1
+    regex_pattern: is (\-?[0-9\.\,]+).
+  - function: take_first
+  name: latent-strict-match
+- filter:
+  - function: regex
+    group_select: 0
+    regex_pattern: '([\s\S]*?)<\|END_OF_LATENT\|>'
+  - function: regex
+    group_select: -1
+    regex_pattern: (-?[$0-9.,]{2,})|(-?[0-9]+)
+  - function: take_first
+  name: latent-flexible-extract
+generation_kwargs:
+  do_sample: false
+  until:
+  - 'Q:'
+  - 'Question:'
+  - </s>
+  - <|im_end|>
+  - <|START_OF_LATENT|>
+tag:
+- chain_of_thought
+metadata:
+  version: 3.0
+metric_list:
+- aggregation: mean
+  higher_is_better: true
+  ignore_case: true
+  ignore_punctuation: false
+  metric: exact_match
+  regexes_to_ignore:
+  - ','
+  - \$
+  - '(?s).*#### '
+  - \.$
+num_fewshot: 8
+output_type: generate_until
+repeats: 1
+task: latent_gsm8k_cot_synthetic_alt
+test_split: test

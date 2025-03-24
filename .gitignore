@@ -1,0 +1,12 @@
+*.pyc
+.vscode
+# *.ipynb
+slurm-*.out
+wandb
+.env
+
+**/debug_*
+exp_logs
+data
+tmp
+plots/figs/

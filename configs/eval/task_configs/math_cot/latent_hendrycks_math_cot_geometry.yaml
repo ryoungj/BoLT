@@ -1,0 +1,3 @@
+include: latent_hendrycks_math_cot_algebra.yaml
+dataset_name: geometry
+task: latent_hendrycks_math_cot_geometry

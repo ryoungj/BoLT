@@ -1,0 +1,14 @@
+group: mmlu_cot_synthetic
+group_alias: mmlu (synthetic fewshot cot)
+task:
+  - mmlu_cot_synthetic_stem
+  - mmlu_cot_synthetic_other
+  - mmlu_cot_synthetic_social_sciences
+  - mmlu_cot_synthetic_humanities
+aggregate_metric_list:
+  - metric: exact_match
+    aggregation: mean
+    weight_by_size: true
+    filter_list: 
+    - strict-match
+    - flexible-extract

@@ -1,0 +1,13 @@
+dataset_config_dir: configs/dataset
+proc_val_set: false  
+data_slice: null  
+num_processes: 1  
+overwrite: false  
+
+generation_method: synthetic
+generation_kwargs:
+  model: "gpt-4o-mini-2024-07-18"
+  max_tokens: 8000
+  temperature: 0.7
+  prompt_template: "You are provided with the following document. Give me a diverse paraphrase in high quality English language that preserves all information in the original document. Also, insert detailed reasoning thoughts (especially, step-by-step mathematical derivations or logical reasoning). Do not output '## Paraphrased Document'.\n\n## Document\n{text}"
+chunk_kwargs: null

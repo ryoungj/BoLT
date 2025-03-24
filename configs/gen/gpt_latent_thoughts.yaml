@@ -1,0 +1,22 @@
+dataset_config_dir: configs/dataset
+proc_val_set: false  
+data_slice: null  
+num_processes: 1  
+overwrite: false  
+
+
+generation_method: synthetic
+generation_kwargs:
+  model: "gpt-4o-mini-2024-07-18"
+  max_tokens: 6000
+  temperature: 0.7
+  system_prompt: "You are an advanced AI system, highly knowledgeable and capable of deeply understanding and reasoning through any web document."
+  prompt_template: "You are provided with a pair of web document prefix and suffix. Your task is to insert latent thoughts between them underlying the creation of the suffix conditioned on the prefix. The latent thoughts should include: the missing background knowledge and the reasoning traces underlying each claim (especially, step-by-step derivations or logical reasoning).\n\n### Prefix:\n{prefix}\n\n### Suffix:\n{suffix}\n\n### Your turn:\nNow provide the latent thoughts. Use concise, simple, and declarative language. Do not give any supporting remarks or references to the terms 'prefix' and 'suffix', as this output will go directly into a computer program. Do not apply any markdown formatting or text embellishments. Optimize the content to ensure every word is informative, avoid vague language like 'xxx is essential'. Emphasize on the suffix without repeating the content in the prefix. Focus on implicit reasoning and background knowledge that is not explicitly stated in the suffix, and use concrete logical reasoning or mathematical derivations when applicable."
+chunk_kwargs:
+    num_chunks: null
+    units_per_chunk: 8
+    max_num_units_per_chunk: 20
+    min_num_units_per_chunk: 1
+    split_mode: "sentence"
+    chunk_seed: 42
+    include_all_prefix_context: false

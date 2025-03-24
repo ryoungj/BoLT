@@ -1,0 +1,17 @@
+dataset_config_dir: configs/dataset
+proc_val_set: false  
+data_slice: null  
+num_processes: 1  
+overwrite: false  
+
+generation_method: synthetic
+generation_kwargs:
+  model: "gpt-4o-mini-2024-07-18"
+  max_tokens: 5000
+  temperature: 0.7
+  prompt_template: 
+  - "For the following website, give me a paraphrase of it using a very small vocabulary and extremely simple sentences that a toddler will understand.\n\n## Website\n{text}"
+  - "For the following website, give me a paraphrase of it using very terse and abstruse language that only an erudite scholar will understand. Replace simple words and phrases with rare and complex ones.\n\n## Website\n{text}"
+  - "For the following website, give me a diverse paraphrase of it in high quality English language, as in sentences on Wikipedia.\n\n## Website\n{text}"
+  - "Convert the following website into a conversational format with multiple tags of 'Question:' followed by 'Answer:'.\n\n## Website\n{text}"
+chunk_kwargs: null

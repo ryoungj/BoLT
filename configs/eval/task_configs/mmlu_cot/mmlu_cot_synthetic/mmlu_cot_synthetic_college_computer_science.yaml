@@ -1,0 +1,4 @@
+dataset_name: college_computer_science
+tag: mmlu_cot_synthetic_stem_tasks
+include: _mmlu_cot_synthetic_template.yaml
+task: mmlu_cot_synthetic_college_computer_science

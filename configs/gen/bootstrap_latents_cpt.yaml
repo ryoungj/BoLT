@@ -1,0 +1,26 @@
+dataset_config_dir: configs/dataset
+proc_val_set: false  
+data_slice: null  
+num_processes: 1  
+overwrite: false  
+
+
+generation_method: synthetic
+generation_kwargs:
+  model_dir: ""
+  step: null
+  use_vllm: true
+  generator:
+    max_gen_len: 1000
+    temperature: 1.0
+    strip_until: true
+    show_progress: true
+chunk_seed: 42
+chunk_kwargs:
+    num_chunks: null
+    split_mode: "sentence"
+    units_per_chunk: 8
+    max_num_units_per_chunk: 20
+    min_num_units_per_chunk: 1
+    include_all_prefix_context: false
+    num_prefix_context_units: 3   # include more context units for prefix

@@ -1,0 +1,15 @@
+group: latent_hendrycks_math_cot_synthetic
+task:
+  - latent_hendrycks_math_cot_synthetic_algebra
+  - latent_hendrycks_math_cot_synthetic_counting_and_prob
+  - latent_hendrycks_math_cot_synthetic_geometry
+  - latent_hendrycks_math_cot_synthetic_intermediate_algebra
+  - latent_hendrycks_math_cot_synthetic_num_theory
+  - latent_hendrycks_math_cot_synthetic_prealgebra
+  - latent_hendrycks_math_cot_synthetic_precalc
+aggregate_metric_list:
+  - metric: exact_match
+    aggregation: mean
+    weight_by_size: true
+metadata:
+  version: 1.0

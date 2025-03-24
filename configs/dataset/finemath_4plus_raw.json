@@ -1,0 +1,11 @@
+{
+    "uuid": "c92e31-a458-4c16-b834-9f2d67c14530",
+    "name": "finemath_4plus_raw",
+    "path": "./data/processed/finemath-4plus/parsed",
+    "sources": ["finemath"],
+    "format": "original",
+    "stats": {
+        "num_samples": 6699429,
+        "content_word_length": 7272384096
+    }
+}

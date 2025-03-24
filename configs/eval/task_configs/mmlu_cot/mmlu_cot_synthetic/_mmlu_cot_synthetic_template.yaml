@@ -1,0 +1,56 @@
+dataset_path: hails/mmlu_no_train # a copy of `cais/mmlu` with no auxiliary_train split
+validation_split: validation
+test_split: test
+output_type: generate_until
+doc_to_text: "{% if choices is defined%}Question: {{question.strip()}}\n(A) {{choices[0]}}\n(B) {{choices[1]}}\n(C) {{choices[2]}}\n(D) {{choices[3]}}\nAnswer:{% else %}{{ question.strip() }}\nAnswer:{% endif %}"
+doc_to_target: "{% if answer is defined%}{{['(A)', '(B)', '(C)', '(D)'][answer]}}{% else %}{{target}}{% endif %}"
+fewshot_config:
+  sampler: default
+  samples:
+  - question: "Question: Which expression is equivalent to 5 x 9?\n(A) (5 x 4) x (6 x 5)\n(B) (5 x 5) + (5 x 4)\n(C) (5 x 5) + (5 x 9)\n(D) (5 x 9) x (6 x 9)"
+    target: "To determine which expression is equivalent to 5 x 9, we need to evaluate each option step by step. \n\nOption (A): (5 x 4) x (6 x 5)\nThis expression simplifies to 20 x 30, which equals 600. This is not equal to 5 x 9 = 45.\n\nOption (B): (5 x 5) + (5 x 4)\nThis expression simplifies to 25 + 20, which equals 45. This matches 5 x 9.\n\nOption (C): (5 x 5) + (5 x 9)\nThis expression simplifies to 25 + 45, which equals 70. This is not equal to 5 x 9.\n\nOption (D): (5 x 9) x (6 x 9)\nThis expression simplifies to 45 x 54, which equals 2430. This is not equal to 5 x 9.\n\nThus, the answer is (B) (5 x 5) + (5 x 4)."
+  - question: "Question: A new smartwatch is manufactured in one part of a factory, then secured for shipping in another, independent part of the factory. The weight of the smartwatch has a mean of 62 grams and a standard deviation of 1.0 grams. The weight of the packaging (box, user's guide, bubble wrap, etc.) has a mean of 456 grams and a standard deviation of 6 grams. Together, the distribution of the weight of the smartwatch and its packaging would have the following mean and standard deviation:\n(A) Mean 518 grams; standard deviation 7.0 grams\n(B) Mean 518 grams; standard deviation 3.5 grams\n(C) Mean 518 grams; standard deviation 6.1 grams\n(D) Mean 394 grams; standard deviation 6.1 grams"
+    target: "To find the combined mean and standard deviation of the smartwatch and packaging, we start by calculating the mean of the total weight. The mean weight of the smartwatch is 62 grams, and the mean weight of the packaging is 456 grams. The total mean weight is calculated by adding these two means:\n\nMean total weight = Mean smartwatch + Mean packaging\nMean total weight = 62 grams + 456 grams = 518 grams.\n\nNext, we need to calculate the standard deviation of the total weight. Since the weights of the smartwatch and packaging are independent, we can use the formula for the sum of two independent random variables:\n\nStandard deviation of total weight = sqrt((Standard deviation of smartwatch)^2 + (Standard deviation of packaging)^2).\n\nThe standard deviation of the smartwatch is 1.0 grams, and the standard deviation of the packaging is 6 grams. Now, we apply the values to the formula:\n\nStandard deviation of total weight = sqrt((1.0 grams)^2 + (6 grams)^2)\n= sqrt(1 + 36)\n= sqrt(37)\n\u2248 6.08 grams.\n\nRounding this value to one decimal place gives us approximately 6.1 grams. \n\nTherefore, the combined mean weight is 518 grams, and the combined standard deviation is approximately 6.1 grams, which corresponds to option (C). Thus, the answer is (C) Mean 518 grams; standard deviation 6.1 grams."
+  - question: "Question: What is the output of 'abc'[::-1] in Python 3?\n(A) Error\n(B) abc\n(C) cba\n(D) c"
+    target: "To determine the output of 'abc'[::-1] in Python 3, we need to understand the syntax and behavior of the slicing operation. The slicing operation 'abc'[::-1] reverses the string 'abc'. The syntax 'abc'[::-1] means start at the end of the string and move backwards, taking every character. \n\nWhen we apply this to the string 'abc', we get the reversed string 'cba'. \n\nTherefore, the output of 'abc'[::-1] in Python 3 is 'cba', which corresponds to option (C). \n\nThus, the answer is (C) cba."
+  - question: "Question: A microwave oven is connected to an outlet, 120 V, and draws a current of 2 amps. At what rate is energy being used by the microwave oven?\n(A) 10 W\n(B) 30 W\n(C) 60 W\n(D) 240 W"
+    target: "To determine the rate of energy usage, we apply the formula for electrical power, which is given by P = V \u00d7 I, where P is power in watts, V is voltage in volts, and I is current in amps. \n\nIn this scenario, the voltage V is 120 V and the current I is 2 A. \n\nCalculating the power:\nP = 120 V \u00d7 2 A = 240 W. \n\nThis calculation shows that the microwave oven consumes energy at a rate of 240 watts. \n\nThus, the answer is (D) 240 W."
+  - question: "Question: The variable $x$ varies directly as the square of $y$, and $y$ varies directly as the cube of $z$. If $x$ equals $-16$ when $z$ equals 2, what is the value of $x$ when $z$ equals $\\frac{1}{2}$?\n(A) -1\n(B) 16\n(C) -\\frac{1}{256}\n(D) \\frac{1}{16}"
+    target: "To solve the problem, we need to establish the relationships between the variables x, y, and z based on the given conditions. \n\nFirstly, since x varies directly as the square of y, we can express this relationship mathematically as:\nx = k1 * y^2, where k1 is a constant.\n\nNext, since y varies directly as the cube of z, we can express this relationship as:\ny = k2 * z^3, where k2 is another constant.\n\nNow we can substitute y in the first equation with its expression in terms of z:\nx = k1 * (k2 * z^3)^2\nx = k1 * k2^2 * z^6.\n\nThis shows that x varies directly as the sixth power of z, leading us to express this as:\nx = k * z^6, where k = k1 * k2^2.\n\nGiven that x = -16 when z = 2, we can substitute these values into the equation to find k:\n-16 = k * (2^6)\n-16 = k * 64\nk = -16 / 64\nk = -1/4.\n\nNow we have the relationship for x in terms of z:\nx = -1/4 * z^6.\n\nNext, we need to find the value of x when z = 1/2. We substitute z = 1/2 into the equation:\nx = -1/4 * (1/2)^6\nx = -1/4 * (1/64)\nx = -1/256.\n\nTherefore, the value of x when z = 1/2 is -1/256. Thus, the answer is (C) -\\frac{1}{256}."
+num_fewshot: 4
+fewshot_delimiter: "\n\n\n\n##Problem\n"
+filter_list:
+  - name: "strict-match"
+    filter:
+      - function: "regex"
+        regex_pattern: "(?<=answer is )\\([A-Z]\\)"
+      - function: "take_first"
+  - name: "flexible-extract"
+    filter:
+      - function: "multi_choice_regex"
+        group_select: -1
+        ignore_case: true
+        ignore_punctuation: true
+        regex_pattern: "(\\([A-Z]\\))"
+      - function: "take_first"
+generation_kwargs:
+  until:
+    - "</s>"
+    - 'Question:'
+  do_sample: false
+  temperature: 0.0
+  bad_words:
+  - <|END_OF_LATENT|>
+  - <|START_OF_LATENT|>
+  - <|PRIOR_PREFIX|>
+  - <|POSTERIOR_PREFIX|>
+metric_list:
+  - metric: exact_match
+    aggregation: mean
+    higher_is_better: true
+    ignore_case: true
+    ignore_punctuation: true
+metadata:
+  version: 2.0
+dataset_kwargs:
+  trust_remote_code: true
