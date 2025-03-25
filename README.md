@@ -1,14 +1,14 @@
 # Reasoning to Learn by Bootstrapping Latent Thoughts
 
 <div align="center" style="font-size: 28px;">
-    <a href="https://arxiv.org/">📃 Paper</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://arxiv.org/abs/2503.18866">📃 Paper</a> &nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="https://huggingface.co/datasets/ryoungj/bootstrap-latent-thought-data">🤗 Data</a> &nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="https://twitter.com/YangjunR/">🐦 Twitter</a>
 </div>
 
 <br>
 
-This repo contains the code for our paper [Reasoning to Learn from Latent Thoughts](https://arxiv.org/). 
+This repo contains the code for our paper [Reasoning to Learn from Latent Thoughts](https://arxiv.org/abs/2503.18866). 
 
 <div align="center">
   <img src="assets/paradigm_illustration.jpg" width="65%">
@@ -97,3 +97,15 @@ Here we include the code for bootstrapping latent thought models with self-gener
 6. Due to the high variance of few-shot prompting evaluation, we recommend running finetuning-based evaluation that demonstrates smoother performance metrics. 
     - Evaluate the model on the finetune datasets: `bash bin/run_finetune_eval.sh [cat|run|launch] math bootstrap_fixed_data.sh [DATA_SETUP] [BOOTSTRAP_ITERATION]`. To further reduce variance, increase the number of seeds (5 by default) and the number of samples per prompt (`num_samples_per_prompt=16` by default).
     - Plot the results with [`plot_finetune_eval_results.ipynb`](plots/plot_finetune_eval_results.ipynb).
+
+
+## Citation
+
+```
+@article{ruan2025reasoning,
+  title={Reasoning to Learn from Latent Thoughts},
+  author={Ruan, Yangjun and Band, Neil and Maddison, Chris J and Hashimoto, Tatsunori},
+  journal={arXiv preprint arXiv:2503.18866},
+  year={2025}
+}
+```
