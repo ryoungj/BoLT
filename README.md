@@ -3,7 +3,7 @@
 <div align="center" style="font-size: 28px;">
     <a href="https://arxiv.org/abs/2503.18866">📃 Paper</a> &nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="https://huggingface.co/datasets/ryoungj/bootstrap-latent-thought-data">🤗 Data</a> &nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="https://twitter.com/YangjunR/">🐦 Twitter</a>
+    <a href="https://x.com/YangjunR/status/1904943713677414836">🐦 Twitter</a>
 </div>
 
 <br>
